@@ -9,8 +9,8 @@ TUkorea - graduation project - 이정준 교수 2팀
 ### 2. 원하는 데어터를 얻기위한 url을 확인한다.
 
 - 제작된 api :
-- localhost:3000/api/LT_history => 테이블의 ct_leader_history 를 모두 조회
-- localhost:3000/api/LT_info => 테이블의 ct_leader 를 모두 조회
+    - localhost:3000/api/LT_history => 테이블의 ct_leader_history 를 모두 조회
+    - localhost:3000/api/LT_info => 테이블의 ct_leader 를 모두 조회
 
 ### 3. api의 디렉토리에서 npm start를 하여 api를 가동시킨다.
 
