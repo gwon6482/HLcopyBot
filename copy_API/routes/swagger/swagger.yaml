@@ -1,0 +1,106 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: HL copy API Server
+  description: HL copy Server API DOCs
+
+servers:
+  - url: http://124.50.247.56:3000
+  - url: http://localhost:3000
+
+paths:
+  /test/db/LT_info:
+    get:
+      summary: "리더 트레이더 테이블 DB 테스트"
+      description : "리더 트레이더 테이블 DB 테스트 - "
+      tags:
+        - DB test
+      responses: 
+        200:
+          description:
+          
+          
+  /test/db/LT_history:
+    get:
+      summary: "리더 트레이더 거래기록 테이블 DB 테스트"
+      description : "리더 거래기록 트레이더 테이블 DB 테스트 - "
+      tags:
+        - DB test
+      responses:
+        200:
+          description: 
+
+
+
+  /api/MT_signal:
+    post:
+      summary: "모니터링 시그널"
+      description : "모니터링 서버용 api 테스트"
+      tags:
+        - api
+      responses:
+        200:
+          description:
+
+  /api/AL_signal:
+    post:
+      summary: "알람 시그널"
+      description : "알람 서버용 api 테스트"
+      tags:
+        - api
+      responses:
+        200:
+          description:
+  /api/RA_signal:
+    post:
+      summary: "리액트 앱 시그널"
+      description : "리액트 앱 api 테스트"
+      tags:
+        - api
+      responses:
+        200:
+          description:
+  /api/TR_signal:
+    post:
+      summary: "트레이드 시그널"
+      description : "트레이드 서버용 api 테스트"
+      tags:
+        - api
+      responses:
+        200:
+          description:
+
+components:
+  schemas:
+    Public:
+      type: object
+      properties:
+        PUBLIC_SEQ:
+          type: integer
+        PUBLIC_ID:
+          type: string
+        PUBLIC_TOKEN:
+          type: string
+        PUBLIC_NAME:
+          type: string
+          nullable: true
+        PUBLIC_IMAGE:
+          type: string
+          nullable: true
+        PHONE_NUM:
+          type: string
+          nullable: true
+        EMAIL:
+          type: string
+          nullable: true
+        PUBLIC_CI:
+          type: string
+        PUBLIC_ST:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      in: header
+      bearerFormat: JWT
