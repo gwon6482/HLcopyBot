@@ -8,7 +8,7 @@ import index from "./routes";
 import version1Router from "./routes/v1/index";
 
 import createHttpError from "http-errors";
-import {pool} from "./model/pool"
+import getFollower from ""
 
 
 
