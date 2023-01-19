@@ -8,7 +8,10 @@ import index from "./routes";
 import version1Router from "./routes/v1/index";
 
 import createHttpError from "http-errors";
+import getFollwers from "./routes/v1/getfollowers";
 
+let follwers = getFollwers();
+console.log(follwers);
 var app = express();
 
 app.use(logger("dev"));
