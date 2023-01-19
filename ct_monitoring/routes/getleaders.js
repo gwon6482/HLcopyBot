@@ -24,6 +24,7 @@ async function getLeaders() {
     conn.release();
   }
   console.log("DB에서 리더트레이더 정보 불러오기 완료");
+  delete leaders.meta;
   return leaders;
 }
 

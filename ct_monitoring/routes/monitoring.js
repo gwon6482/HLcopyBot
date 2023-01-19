@@ -10,9 +10,9 @@ const queryEncode = require("querystring").encode;
 
 let bodyT = {};
 
-function monitoring(leaders) {
-  const access_key = leaders[0]["ACCESS_KEY"];
-  const secret_key = leaders[0]["SECRET_KEY"];
+function monitoring(leader) {
+  const access_key = leader["ACCESS_KEY"];
+  const secret_key = leader["SECRET_KEY"];
   const server_url = process.env.UPBIT_OPEN_API_SERVER_URL;
 
   const state = "done";
@@ -64,7 +64,7 @@ function monitoring(leaders) {
 
       let body1 = _.cloneDeep(body);
       console.log(body1);
-      body1[0].LEADER_SEQ = leaders[0]["LEADER_SEQ"];
+      body1.LEADER_SEQ = leader["LEADER_SEQ"];
       const options = {
         uri: "http://localhost:3020/v1/copytrading",
         method: "POST",
@@ -75,7 +75,7 @@ function monitoring(leaders) {
       console.log("카피트레이딩 서버에 전송완료");
 
       request.post(options, function (error, response, body) {
-        console.log("응답 수신완료");
+        console.log(response);
       });
     }
   });

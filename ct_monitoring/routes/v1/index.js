@@ -3,7 +3,7 @@ import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import path from "path";
 
-import mornitoringRouter from "./monitoring"
+import mornitoringRouter from "../monitoring";
 
 const router = express.Router();
 
@@ -17,6 +17,6 @@ router.use(
   swaggerUi.setup(YAML.load(path.join(__dirname, "./swagger/swagger.yaml")))
 );
 
-router.use("/mornitoring",mornitoringRouter);
+router.use("/mornitoring", mornitoringRouter);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import { pool } from "./model/pool";
+import { pool } from "../../model/pool";
 
 async function getFollowers() {
   const sql = `
@@ -22,8 +22,9 @@ async function getFollowers() {
     console.log(err);
   } finally {
     conn.release();
-    console.log("DB에서 팔로워 정보 불러오기 완료");
+    delete followers.meta;
+    console.log(followers);
   }
-
-  return leaders;
 }
+
+module.exports = getFollowers;

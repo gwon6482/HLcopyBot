@@ -12,7 +12,9 @@ import monitoring from "./routes/monitoring";
 var app = express();
 async function monitor() {
   let leaders = await getLeaders();
-  await setInterval(() => monitoring(leaders), 100);
+  leaders.forEach((leader) => {
+    setInterval(() => monitoring(leader), 1000);
+  });
 }
 
 monitor();
