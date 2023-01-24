@@ -1,5 +1,5 @@
 var express = require('express');
-var db_connect = require('../DB_connect/test_db_connect');
+var db_connect = require('../../DB_connect/test_db_connect');
 var router = express.Router();
 
 /* GET users listing. */
