@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-import {LT_history, LT_info} from '../utils/api';
+import {ex, ex1, LT_history, LT_info} from '../utils/api';
 
 const TraderListScreen = () => {
     const [text, setText] = useState({});
@@ -16,7 +16,7 @@ const TraderListScreen = () => {
             <View style={styles.button}>
                 <Pressable
                     onPress={async () => {
-                        const data = await LT_info();
+                        const data = await ex();
                         setText(data);
                     }}
                     style={styles.item}>
@@ -26,7 +26,7 @@ const TraderListScreen = () => {
             <View style={styles.button}>
                 <Pressable
                     onPress={async () => {
-                        const data = await LT_history();
+                        const data = await ex1();
                         setText(data);
                     }}
                     style={styles.item}>

@@ -1,7 +1,7 @@
-const API_URI = 'http://124.50.247.56:3000/api';
+const API_URI = 'localhost:3000/api/';
 
 export const LT_history = async () => {
-    const response = await fetch(`${API_URI}/LT_history`, {
+    const response = await fetch(`${API_URI}/LT_info`, {
         method: 'GET',
     });
     const data = await response.json();
@@ -14,7 +14,7 @@ export const LT_info = async () => {
         method: 'GET',
     });
     const data = await response.json();
-    console.log(data);
+
     return data;
 };
 
