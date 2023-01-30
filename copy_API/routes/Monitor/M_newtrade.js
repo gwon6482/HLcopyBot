@@ -24,10 +24,17 @@ router.post('/', async function(req, res, next) {
     
     for (var i =0; i < sub_data.length; i++ ) {
         console.log(`
-            ${sub_data[i].USER_SEQ}의 계좌로
-            ${sub_data[i].TRADE_RATIO} 비율의 거래 바람
-            리더 거래금액 : ${body.TRADE_PRICE}
-            리더 거래시장 : ${body.TRADE_MARKET}
+            ------------------------------------------------
+            PUBLIC SEQ: ${sub_data[i].PUBLIC_SEQ}
+            FOLLOWING TYPE: ${sub_data[i].FOLLOWING_TYPE}
+            FIXED AMOUNT: ${sub_data[i].FIXED_AMOUNT} 
+            FIXED RATIO: ${sub_data[i].FIXED_RATIO} 
+            TAKE RATIO: ${sub_data[i].TAKE_RATIO} 
+            
+            TRADE VOLUME : ${body.TRADE_VOLUME}
+            TRADE PRICE : ${body.TRADE_PRICE}
+            TRADE MARKET : ${body.TRADE_MARKET}
+            ------------------------------------------------
         `)
     }
     

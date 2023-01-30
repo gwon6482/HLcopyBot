@@ -13,7 +13,7 @@ async function Get_LT_history(){
     let conn, rows;
     try{
         conn = await pool.getConnection();
-        conn.query('USE test_db');
+        conn.query('USE copytrade_proto');
         rows = await conn.query('SELECT * FROM ct_leader_history');
     }
     catch(err){
@@ -30,7 +30,7 @@ async function Get_LT_info(){
     let conn, rows;
     try{
         conn = await pool.getConnection();
-        conn.query('USE test_db');
+        conn.query('USE copytrade_proto');
         rows = await conn.query('SELECT * FROM ct_leader');
     }
     catch(err){
@@ -61,7 +61,7 @@ async function PUT_LT_history(data){
         console.log(`INSERT INTO ct_leader_history (LEADER_SEQ, HISTORY_NUM, TRADE_TYPE, TRADE_SYMBOL, TRADE_MARKET, TRADE_PRICE, TRADE_VOLUME, REG_DT) VALUES (${LEADER_SEQ}, '${HISTORY_NUM}', '${TRADE_TYPE}', '${TRADE_SYMBOL}', '${TRADE_MARKET}', ${TRADE_PRICE}, ${TRADE_VOLUME}, '${REG_DT}')`)
         
         conn = await pool.getConnection();
-        conn.query('USE test_db');
+        conn.query('USE copytrade_proto');
         rows = await conn.query(`INSERT INTO ct_leader_history (LEADER_SEQ, HISTORY_NUM, TRADE_TYPE, TRADE_SYMBOL, TRADE_MARKET, TRADE_PRICE, TRADE_VOLUME, REG_DT) VALUES (${LEADER_SEQ}, '${HISTORY_NUM}', '${TRADE_TYPE}', '${TRADE_SYMBOL}', '${TRADE_MARKET}', ${TRADE_PRICE}, ${TRADE_VOLUME}, '${REG_DT}')`);
     }
     catch(err){
@@ -79,8 +79,8 @@ async function Get_Sub_User(LEADER_SEQ){
     let conn, rows;
     try{
         conn = await pool.getConnection();
-        conn.query('USE test_db');
-        rows = await conn.query(`select USER_SEQ, TRADE_RATIO from ct_subscribe where LEADER_SEQ = ${LEADER_SEQ};`);
+        conn.query('USE copytrade_proto');
+        rows = await conn.query(`select PUBLIC_SEQ, FOLLOWING_TYPE, FIXED_AMOUNT, FIXED_RATIO,TAKE_RATIO from ct_following where LEADER_SEQ = ${LEADER_SEQ};`);
     }
     catch(err){
         throw err;
