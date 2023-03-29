@@ -54,17 +54,21 @@ function monitoring(leader) {
     headers: { Authorization: `Bearer ${token}` },
     json: body,
   };
-
+  const currentDate = new Date().toISOString();
   request(options, (error, response, body) => {
     if (error) throw new Error(error);
-    if (JSON.stringify(bodyT) !== JSON.stringify(body)) {
+    if (
+      JSON.stringify(bodyT) !== JSON.stringify(body) &&
+      body[0].created_at > currentDate
+    ) {
       bodyT = body;
       const request = require("request");
       // POST 요청하기
 
       let body1 = _.cloneDeep(body);
       console.log(body1);
-      body1.LEADER_SEQ = leader["LEADER_SEQ"];
+      body1[0].LEADER_SEQ = leader["LEADER_SEQ"];
+      console.log(body1);
       const options = {
         uri: "http://localhost:3020/v1/copytrading",
         method: "POST",
@@ -75,7 +79,7 @@ function monitoring(leader) {
       console.log("카피트레이딩 서버에 전송완료");
 
       request.post(options, function (error, response, body) {
-        console.log(response);
+        console.log(response.body);
       });
     }
   });
