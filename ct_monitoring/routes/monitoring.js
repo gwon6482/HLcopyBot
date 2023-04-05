@@ -4,7 +4,6 @@ import crypto from "crypto";
 import _ from "lodash";
 
 require("dotenv").config();
-
 const sign = require("jsonwebtoken").sign;
 const queryEncode = require("querystring").encode;
 
@@ -59,14 +58,12 @@ function monitoring(leader) {
     if (error) throw new Error(error);
     if (
       JSON.stringify(bodyT) !== JSON.stringify(body) &&
-      body[0].created_at > currentDate
+      body[0].created_at.slice(0, 19) > currentDate.slice(0.19)
     ) {
+      // trading 서버에 거래 발생 POST
       bodyT = body;
-      const request = require("request");
-      // POST 요청하기
 
       let body1 = _.cloneDeep(body);
-      console.log(body1);
       body1[0].LEADER_SEQ = leader["LEADER_SEQ"];
       console.log(body1);
       const options = {
@@ -81,6 +78,44 @@ function monitoring(leader) {
       request.post(options, function (error, response, body) {
         console.log(response.body);
       });
+      // main 서버에 거래 발생 POST
+      // let tradeType;
+      // if (body1[0].side === "bid") {
+      //   tradeType = "TT02";
+      // } else if (body1[0].side === "ask") {
+      //   tradeType = "TT01";
+      // }
+      // const date = body1[0].created_at.slice(0, 19);
+
+      // const options2 = {
+      //   url: "http://124.50.247.56:3000/api/monitor/newtrade",
+      //   method: "POST",
+      //   json: {
+      //     LEADER_SEQ: leader["LEADER_SEQ"],
+      //     HISTORY_NUM: "00",
+      //     TRADE_TYPE: tradeType,
+      //     TRADE_SYMBOL: "test_sym",
+      //     TRADE_MARKET: body1[0].market,
+      //     TRADE_PRICE: body1[0].price,
+      //     TRADE_VOLUME: body1[0].volume,
+      //     REG_DT: date,
+      //   },
+      //   body: {
+      //     LEADER_SEQ: leader["LEADER_SEQ"],
+      //     HISTORY_NUM: "00",
+      //     TRADE_TYPE: tradeType,
+      //     TRADE_SYMBOL: "test_sym",
+      //     TRADE_MARKET: body1[0].market,
+      //     TRADE_PRICE: body1[0].price,
+      //     TRADE_VOLUME: body1[0].volume,
+      //     REG_DT: date,
+      //   },
+      // };
+
+      // request.post(options2, function (error, response, body) {
+      //   console.log(response);
+      //   console.log("메인 서버에 전송완료");
+      // });
     }
   });
 }

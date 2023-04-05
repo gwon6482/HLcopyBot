@@ -64,6 +64,34 @@ router.post("/", async (req, res) => {
       console.log(body);
     });
 
+    // request(options, (error, response, body) => {
+    //   if (error) throw new Error(error);
+    //   if (
+    //     JSON.stringify(bodyT) !== JSON.stringify(body) &&
+    //     body[0].created_at > currentDate
+    //   ) {
+    //     bodyT = body;
+    //     const request = require("request");
+
+    //     let body1 = _.cloneDeep(body);
+    //     console.log(body1);
+    //     body1[0].LEADER_SEQ = leader["LEADER_SEQ"];
+    //     console.log(body1);
+    //     const options = {
+    //       uri: "http://localhost:3000/v1/copytrading",
+    //       method: "POST",
+
+    //       body: body1,
+    //       json: body1,
+    //     };
+    //     console.log("카피트레이딩 서버에 전송완료");
+
+    //     request.post(options, function (error, response, body) {
+    //       console.log(response.body);
+    //     });
+    //   }
+    // });
+
     console.log(req.body);
   });
   res.json("업비트 서버에 전송완료");
