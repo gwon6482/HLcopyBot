@@ -48,6 +48,11 @@ router.post('/show_allleadertrade', async function(req, res, next) {
   const seq = body.seq;
   var leader_his = await LR_getdata.get_leaderhis_byID(seq);
   console.log(`router : ${JSON.stringify(leader_his)}`);
+
+  // leader_his -> 수익률 계산 
+  // TRADE_TYPE
+
+
   res.json(leader_his);
 
 
