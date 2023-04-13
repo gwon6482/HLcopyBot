@@ -50,7 +50,7 @@ async function Get_all_leader(){
 async function Get_leader_history_byID(seq){
     let conn, rows;
     try{
-        
+
         conn = await pool.getConnection();
         conn.query('USE copytrade_proto;');
         rows = await conn.query(`select TRADE_TYPE, TRADE_PRICE,TRADE_VOLUME,REG_DT from ct_leader_history where LEADER_SEQ = ${seq};`);
@@ -66,10 +66,9 @@ async function Get_leader_history_byID(seq){
     }
 }
 
-
 module.exports = {
 
     Get_Sub_User: Get_Sub_User,
     Get_all_leader : Get_all_leader,
-    Get_leader_history_byID :Get_leader_history_byID,
+    Get_leader_history_byID : Get_leader_history_byID,
 }

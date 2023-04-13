@@ -4,25 +4,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // swaggrt Router
-var v1swaggerRouter = require('./moudes/EV_module/router/v1/index')
-
-// index Router
+var v1swaggerRouter = require('./moudes/EV_module/router/v1/index');
 var indexRouter = require('./moudes/EV_module/router/index');
-
-// Test Router
-var TEST_Router = require('./moudes/EV_module/router/DB_test')
-
-/**  신규 이벤트   */
-
-// 회원가입
-var user_Router = require('./moudes/EV_module/router/user_router');
-
-// APP 라우터
-var app_Router = require('./moudes/EV_module/Router/app_router')
-
-
-// Monitor server Router
-var M_newtrade = require('./moudes/EV_module/router/newtrade')
+var TEST_Router = require('./moudes/EV_module/Router/TEST_Router');
+var UR_Router = require('./moudes/EV_module/Router/UR_Router');
+var LR_Router = require('./moudes/EV_module/Router/LR_Router');
+var trade_Router = require('./moudes/EV_module/router/TR_Router');
 
 
 var app = express();
@@ -40,16 +27,17 @@ app.use('/', indexRouter);
 // swagger 
 app.use("/v1",v1swaggerRouter);
 
+// trade
+app.use('/trade',trade_Router);
 
-// Monitor server apis
-app.use('/api/monitor/newtrade',M_newtrade);
+// test 
+app.use('/test',TEST_Router);
 
-app.use('/dbtest',TEST_Router);
+// USER 
+app.use('/user',UR_Router);
 
-// USER event
-app.use('/user',user_Router);
+// leader 
+app.use('/leader',LR_Router);
 
-// APP event 
-app.use('/app',app_Router);
 
 module.exports = app;
